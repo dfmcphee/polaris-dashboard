@@ -44,6 +44,9 @@ const ISSUE_QUERY = gql`
 export default graphql(ISSUE_QUERY, {
   options: {
     fetchPolicy: 'cache-and-network',
+    pollInterval: 5000,
+    forceFetch: true,
+    notifyOnNetworkStatusChange: true
   },
   props: ({ data: { loading, repository } }) => {
     return ({
