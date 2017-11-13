@@ -10,7 +10,7 @@ import {
 } from '@shopify/polaris';
 
 function PolarisIssueCount({ loading, repository }) {
-  if (loading) {
+  if (loading && !repository) {
     return (
       <Card sectioned>
         <TextContainer>
