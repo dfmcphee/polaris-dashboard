@@ -44,7 +44,7 @@ const ISSUE_QUERY = gql`
 export default graphql(ISSUE_QUERY, {
   options: {
     fetchPolicy: 'cache-and-network',
-    pollInterval: 5000,
+    pollInterval: 150000,
     forceFetch: true,
     notifyOnNetworkStatusChange: true
   },

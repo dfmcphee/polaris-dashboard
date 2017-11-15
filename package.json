@@ -12,7 +12,8 @@
     "react": "^16.1.0",
     "react-apollo": "^2.0.1",
     "react-dom": "^16.1.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "react-timeago": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
