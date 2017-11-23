@@ -14,7 +14,7 @@ import {
   SkeletonDisplayText
 } from '@shopify/polaris';
 
-function PolarisIssueList({ loading, repository }) {
+function IssueList({ loading, repository }) {
   if (loading && !repository) {
     return (
       <Card sectioned>
@@ -45,24 +45,22 @@ function PolarisIssueList({ loading, repository }) {
   });
 
   return (
-    <div className="PolarisIssues">
-      <Card>
-        <Card.Section>
-          <Heading>Latest issues</Heading>
-        </Card.Section>
-        <ResourceList
-          items={issues}
-          renderItem={(item, index) => {
-            return <ResourceList.Item key={index} {...item} />;
-          }}
-        />
-        <Card.Section>
-          <Link url="https://github.com/Shopify/polaris/issues">
-            All issues
-          </Link>
-        </Card.Section>
-      </Card>
-    </div>
+    <Card>
+      <Card.Section>
+        <Heading>Latest issues</Heading>
+      </Card.Section>
+      <ResourceList
+        items={issues}
+        renderItem={(item, index) => {
+          return <ResourceList.Item key={index} {...item} />;
+        }}
+      />
+      <Card.Section>
+        <Link url="https://github.com/Shopify/polaris/issues">
+          View all issues
+        </Link>
+      </Card.Section>
+    </Card>
   );
 }
 
@@ -98,4 +96,4 @@ export default graphql(ISSUE_QUERY, {
       repository,
     })
   },
-})(PolarisIssueList);
+})(IssueList);

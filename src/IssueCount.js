@@ -9,7 +9,7 @@ import {
   SkeletonDisplayText
 } from '@shopify/polaris';
 
-function PolarisIssueCount({ loading, repository }) {
+function IssueCount({ loading, repository }) {
   if (loading && !repository) {
     return (
       <Card sectioned>
@@ -21,13 +21,11 @@ function PolarisIssueCount({ loading, repository }) {
   }
 
   return (
-    <div className="PolarisIssueCount">
-      <Card title="Open issues" sectioned>
-        <DisplayText size="large">
-          {repository.issues.totalCount}
-        </DisplayText>
-      </Card>
-    </div>
+    <Card title="Open issues" sectioned>
+      <DisplayText size="large">
+        {repository.issues.totalCount}
+      </DisplayText>
+    </Card>
   );
 }
 
@@ -54,4 +52,4 @@ export default graphql(ISSUE_QUERY, {
       repository,
     })
   },
-})(PolarisIssueCount);
+})(IssueCount);
