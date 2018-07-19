@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import TimeAgo from 'react-timeago'
+import TimeAgo from 'react-timeago';
 
 import {
   ResourceList,
@@ -11,7 +11,7 @@ import {
   TextStyle,
   TextContainer,
   SkeletonBodyText,
-  SkeletonDisplayText
+  SkeletonDisplayText,
 } from '@shopify/polaris';
 
 function IssueList({ loading, repository }) {
@@ -26,23 +26,13 @@ function IssueList({ loading, repository }) {
     );
   }
 
-  let issues = [...repository.issues.edges];
-
-  issues.sort(function (a, b) {
-    return new Date(b.node.createdAt) - new Date(a.node.createdAt);
-  });
-
-  issues = issues.map((issue, index) => {
-    return {
-      url: issue.node.url,
-      attributeOne: issue.node.title,
-      attributeTwo: (
-        <TextStyle variation="subdued">
-          from {issue.node.author.login} <TimeAgo date={issue.node.createdAt} />
-        </TextStyle>
-      ),
-    }
-  });
+  const issues = [...repository.issues.edges]
+    .map((issue, index) => {
+      return issue.node;
+    })
+    .sort(function (a, b) {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
 
   return (
     <Card>
@@ -50,9 +40,25 @@ function IssueList({ loading, repository }) {
         <Heading>Latest issues</Heading>
       </Card.Section>
       <ResourceList
+        resourceName={{ singular: 'issue', plural: 'issues' }}
         items={issues}
-        renderItem={(item, index) => {
-          return <ResourceList.Item key={index} {...item} />;
+        renderItem={(item) => {
+          const { id, title, url, author, createdAt } = item;
+
+          return (
+            <ResourceList.Item
+              id={id}
+              url={url}
+              accessibilityLabel={`View details for issue`}
+            >
+              <h3>
+                <TextStyle variation="strong">{title}</TextStyle>
+              </h3>
+              <TextStyle variation="subdued">
+                from {author.login} <TimeAgo date={createdAt} />
+              </TextStyle>
+            </ResourceList.Item>
+          );
         }}
       />
       <Card.Section>
@@ -67,9 +73,10 @@ function IssueList({ loading, repository }) {
 const ISSUE_QUERY = gql`
   query IssueQuery { 
     repository(owner:"shopify", name:"polaris") {
-      issues(last:5, states:OPEN) {
+      issues(last: 10, states:OPEN) {
         edges {
           node {
+            id
             title
             url
             author {

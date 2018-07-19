@@ -1,17 +1,17 @@
 {
   "name": "polaris-dashboard",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "@shopify/polaris": "^1.8.3",
+    "@shopify/polaris": "^2.4.0",
     "apollo-cache-inmemory": "^1.1.0",
     "apollo-client": "^2.0.2",
     "apollo-link-http": "^1.1.0",
     "graphql": "^0.11.7",
     "graphql-tag": "^2.5.0",
-    "react": "^16.1.0",
+    "react": "^16.4.1",
     "react-apollo": "^2.0.1",
-    "react-dom": "^16.1.0",
+    "react-dom": "^16.4.1",
     "react-scripts": "1.0.17",
     "react-timeago": "^3.4.3"
   },
