@@ -31,7 +31,7 @@ function IssueCount({ loading, repository }) {
 
 const ISSUE_QUERY = gql`
   query IssueCountQuery { 
-    repository(owner:"shopify", name:"polaris") { 
+    repository(owner:"shopify", name:"polaris-react") { 
       issues(states:OPEN) {
         totalCount
       }

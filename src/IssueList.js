@@ -72,7 +72,7 @@ function IssueList({ loading, repository }) {
 
 const ISSUE_QUERY = gql`
   query IssueQuery { 
-    repository(owner:"shopify", name:"polaris") {
+    repository(owner:"shopify", name:"polaris-react") {
       issues(last: 10, states:OPEN) {
         edges {
           node {
